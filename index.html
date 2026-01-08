@@ -7,11 +7,17 @@
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+<!-- ADMIN LOGIN (TOP RIGHT) -->
+<div class="admin-access">
+    <button class="admin-btn" onclick="adminLogin()" title="Admin Login">
+        <i class="fas fa-user-shield"></i>
+    </button>    
+</div>
 
 <!-- LOADER -->
 <div id="loader">
@@ -73,7 +79,6 @@
     </div>
 </section>
 
-
 <!-- PRICE LIST -->
 <section class="price-list">
     <h2>Price List</h2>
@@ -119,14 +124,12 @@
     </div>
 </section>
 
-
 <!-- BOOKING -->
 <section class="booking" id="booking">
     <h2>Book an Appointment</h2>
 
     <form id="bookingForm">
         <input type="text" id="name" placeholder="Your Name" required>
-
         <input type="tel" id="phone" placeholder="Phone Number" required>
 
         <select id="service" required>
@@ -137,19 +140,15 @@
             <option>Add-On Service</option>
         </select>
 
-        <!-- CALENDAR DATE PICKER -->
         <input type="date" id="date" required>
-
         <button type="submit" class="btn-gold">Send Booking</button>
     </form>
 </section>
-
 
 <!-- CTA -->
 <section class="cta">
     <h2>Elevate Your Nails</h2>
     <p>Book your luxury nail experience today</p>
-    <!-- <a href="#booking" class="btn-gold">Book Now</a> -->
 </section>
 
 <!-- FOOTER -->
@@ -159,26 +158,62 @@
         <p>Luxury Nail Art • Precision • Elegance</p>
 
         <div class="social-icons">
-            <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://facebook.com/" target="_blank" aria-label="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://x.com/" target="_blank" aria-label="X">
-                <i class="fab fa-x-twitter"></i>
-            </a>
+            <a href="https://www.instagram.com/thenaillabbytashy?igsh=MTFudWFxZWdzNWU0OQ=="><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61576775337925#"><i class="fab fa-facebook-f"></i></a>
+            <a href="tiktok.com/@thenaillabbytashy"><i class="fab fa-tiktok"></i></a>
         </div>
 
         <span>© 2026 The Nail Lab by Tasha. All rights reserved.</span>
     </div>
 </footer>
 
-
-
 <!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/27680509626" class="whatsapp-float">💬</a>
+<!-- ADMIN LOGIN MODAL -->
+<div id="adminModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Admin Login</h2>
+        <input type="password" id="adminPassword" placeholder="Enter password">
+        <button id="loginBtn" class="btn-gold">Login</button>
+    </div>
+</div>
 
+<!-- ADMIN LOGIN LOGIC -->
+<script>
+    const modal = document.getElementById("adminModal");
+    const closeBtn = document.querySelector(".close-btn");
+    const loginBtn = document.getElementById("loginBtn");
+    
+    // Show modal when admin button clicked
+    function adminLogin() {
+        modal.style.display = "block";
+    }
+    
+    // Close modal
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+    
+    // Close modal when clicking outside the modal content
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+    
+    // Handle login
+    loginBtn.onclick = function() {
+        const password = document.getElementById("adminPassword").value;
+        if (password === "tasha123") {
+            localStorage.setItem("adminLoggedIn", "true");
+            window.location.href = "admin.html";
+        } else {
+            alert("Incorrect password");
+        }
+    }
+    </script>
+    
 <script src="script.js"></script>
 </body>
 </html>
